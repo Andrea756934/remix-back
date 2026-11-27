@@ -19,6 +19,18 @@ export const userId = async (req: TypedRequest, res: Response, next: NextFunctio
     }
 }
 
+export const getProfile = async (req: TypedRequest, res: Response, next: NextFunction) => {
+    try {
+        const id = (req.user as user).id;
+        let results = await userService.findById(id);
+
+        res.json(results);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
 export const list = async (req: TypedRequest, res: Response, next: NextFunction) => {
     try {
         let results = await userService.find();

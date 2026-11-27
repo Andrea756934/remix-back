@@ -1,4 +1,15 @@
-import { IsEmail, IsString, IsUrl, Matches } from "class-validator";
+import {
+    ArrayMaxSize,
+    IsArray,
+    IsEmail,
+    IsOptional,
+    IsString,
+    IsUrl,
+    Matches,
+    ValidateNested
+} from "class-validator";
+import { Type } from "class-transformer";
+import { shippingAddressDTO } from "../orders/orders.dto";
 
 export class registerDto {
     @IsEmail()
@@ -20,6 +31,13 @@ export class registerDto {
 
     @IsUrl()
     picture: string;
+
+    @IsOptional()
+    @IsArray()
+    @ArrayMaxSize(5)
+    @ValidateNested({ each: true })
+    @Type(() => shippingAddressDTO)
+    addresses?: shippingAddressDTO[];
 }
 
 export class loginDto {

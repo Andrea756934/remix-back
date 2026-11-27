@@ -1,6 +1,6 @@
-export type address = {
+export type Address = {
     id: string,
-    fullname: string,
+    fullName: string,
     street: string,
     city: string,
     country: string,
@@ -13,6 +13,8 @@ export type user = {
     lastName: string,
     fullname: string,
     picture: string,
-    addresses?: address[],
-    deletedAt: Date
+    email?: string,        // presente solo quando l'utente guarda sé stesso
+    createdAt: Date,
+    addresses?: Address[],
+    deletedAt?: Date
 }

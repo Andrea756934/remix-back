@@ -38,6 +38,10 @@ export class updateProfileDTO {
     @IsUrl()
     picture?: string;
 
+    @IsOptional()
+    @IsNotEmpty()
+    password?: string;
+
     //se presente sostituisce l'intero elenco; se assente gli indirizzi restano invariati
     @IsOptional()
     @IsArray()
